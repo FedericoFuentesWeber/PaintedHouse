@@ -18,3 +18,22 @@ HouseTest >> test01HouseMustBeConformedByAtLeastOneRoom [
 				assert: error messageText
 				equals: 'A house must be conformed by, at least, one room.' ]
 ]
+
+{ #category : #tests }
+HouseTest >> test02HouseConformedByOneRoom [
+
+	| bedroom house |
+	bedroom := Room occupyingInMeters: 20.
+	house := House conformedBy: bedroom.
+	self assert: house meters equals: 20
+]
+
+{ #category : #tests }
+HouseTest >> test03HouseConformedByManyRooms [
+
+	| bedroom kitchen house |
+	bedroom := Room occupyingInMeters: 20.
+	kitchen := Room occupyingInMeters: 21.
+	house := House conformedByAll: (Array with: bedroom with: kitchen).
+	self assert: house meters equals: 41
+]

@@ -8,6 +8,18 @@ Class {
 	#category : #PaintedHouse
 }
 
+{ #category : #'instance creation' }
+Painter class >> costingPerSquareMeter: anAmount calculatingTotalCostWith: aTotalCostCalculation [
+
+	anAmount negative ifTrue: [ 
+		Error signal:
+			'El costo por metro cuadrado debe ser positivo.' ].
+
+	^ self new
+		  initializePaymentPerSquareMeterOf: anAmount
+		  calculatingTotalCostWith: aTotalCostCalculation
+]
+
 { #category : #accessing }
 Painter >> costToPaint: squareMeters with: aPaintCan [
 

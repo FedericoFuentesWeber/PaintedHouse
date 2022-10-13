@@ -35,6 +35,14 @@ EmployerTest >> bulkPaintSpecification [
 ]
 
 { #category : #'private - accessing' }
+EmployerTest >> house [
+
+	^ House conformedByAll: (Array
+			   with: (Room occupyingInMeters: 20)
+			   with: (Room occupyingInMeters: 21))
+]
+
+{ #category : #'private - accessing' }
 EmployerTest >> paintCanSpecification [
 
 	^ PaintSpecification coveringUpTo: 50 costing: 500

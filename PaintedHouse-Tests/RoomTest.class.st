@@ -9,3 +9,33 @@ Class {
 	],
 	#category : #'PaintedHouse-Tests'
 }
+
+{ #category : #tests }
+RoomTest >> test01RoomOccupyingFixedSpace [
+
+	room := Room occupyingInMeters: 20.
+	self assert: room meters equals: 20
+]
+
+{ #category : #tests }
+RoomTest >> test02RoomOccupyingSurfaceBasedSpace [
+
+	room := Room withDimensionsDeterminedBy:
+		        (RectangularSurface height: 3.5 length: 2 width: 1).
+
+	self assert: room meters equals: 21
+]
+
+{ #category : #tests }
+RoomTest >> test03RoomNameMustNotBeBlank [
+
+	OrderedCollection new
+		add: '';
+		add: '   ';
+		do: [ :invalidRoomName | 
+			self
+				should: [ Room occupyingInMeters: 20 ]
+				raise: Error
+				withExceptionDo: [ :error | 
+					self assert: error messageText equals: 'Name must not be blank.' ] ]
+]
