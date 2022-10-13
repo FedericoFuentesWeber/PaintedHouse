@@ -25,17 +25,3 @@ RoomTest >> test02RoomOccupyingSurfaceBasedSpace [
 
 	self assert: room meters equals: 21
 ]
-
-{ #category : #tests }
-RoomTest >> test03RoomNameMustNotBeBlank [
-
-	OrderedCollection new
-		add: '';
-		add: '   ';
-		do: [ :invalidRoomName | 
-			self
-				should: [ Room occupyingInMeters: 20 ]
-				raise: Error
-				withExceptionDo: [ :error | 
-					self assert: error messageText equals: 'Name must not be blank.' ] ]
-]
